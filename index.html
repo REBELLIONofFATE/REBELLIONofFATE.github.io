@@ -62,6 +62,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-如何用base64在markdown中插入图片" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/01/如何用base64在markdown中插入图片/" class="article-date">
+  <time datetime="2019-10-01T14:58:32.000Z" itemprop="datePublished">2019-10-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/01/如何用base64在markdown中插入图片/">如何用base64在markdown中插入图片</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>也是在第一次写博客时发现问题的，如何在markdown中插入图片，共有三种方法</p>
+<p>1，插入网络图片：需要在基础语法的括号中填入图片的网络链接即可<br>2，插入本地图片：只需要在基础语法的括号中填入图片的位置路径即可，支持绝对路径和相对路径。<br>3，使用base64把图片转成字符串存入文章中</p>
+<p>在这里我们使用第三种方法</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>读取图片信息，转为base64字符串，将所得字符串以特定格式插入文章，在显示时会将字符串以图片形式显示</p>
+<h2 id="得到base64字符串"><a href="#得到base64字符串" class="headerlink" title="得到base64字符串"></a>得到base64字符串</h2><p>网上有很多在线转图片为base64字符串的网站比如<a href="http://imgbase64.duoshitong.com/" target="_blank" rel="noopener">http://imgbase64.duoshitong.com/</a></p>
+<p>拥有极客精神的我们也可以用python来实现这一功能</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">img_path=<span class="string">"p1.png"</span></span><br><span class="line"><span class="keyword">with</span> open(img_path,<span class="string">'rb'</span>) <span class="keyword">as</span> f:  </span><br><span class="line">    image_data =f.read() <span class="comment">#读取文件信息</span></span><br><span class="line">    base64_data =base64.b64encode(image_data)</span><br><span class="line">my_data=<span class="string">"data:image/png;base64,"</span>+str(base64_data,<span class="string">'utf-8'</span>)</span><br><span class="line">f2=open(<span class="string">"p1.txt"</span>,<span class="string">"w"</span>)  </span><br><span class="line">f2.write(my_data)  <span class="comment">#将所得内容写入文本文件</span></span><br><span class="line">f2.close</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用bsae64字符串"><a href="#使用bsae64字符串" class="headerlink" title="使用bsae64字符串"></a>使用bsae64字符串</h2><p>所得字符将以特定形式插入文档，格式如下（其中给字符串命名使用，因为方便）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![image][img]</span><br><span class="line"></span><br><span class="line">[img]:data:image/png;base64,所得字符</span><br></pre></td></tr></table></figure>
+
+<h2 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h2><p>这种方法不需要将图片传入服务器，但也不是很方便，当需要使用的图片少的时候还行，图片多了只能呵呵了。</p>
+<p>作者：小武</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/01/如何用base64在markdown中插入图片/" data-id="ck17z0zhc0000p8ol8hhvk02t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-我的第一篇文章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/01/我的第一篇文章/" class="article-date">
@@ -123,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/01/我的第一篇文章/" data-id="ck17873kc0001mcolf2fn7yy7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/01/我的第一篇文章/" data-id="ck17z0zi70002p8oln3tsbdss" class="article-share-link">Share</a>
       
       
     </footer>
@@ -172,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/28/hello-world/" data-id="ck17873ju0000mcolkxmaalp7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/28/hello-world/" data-id="ck17z0zhh0001p8oljrikjl56" class="article-share-link">Share</a>
       
       
     </footer>
@@ -211,6 +260,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/10/01/如何用base64在markdown中插入图片/">如何用base64在markdown中插入图片</a>
+          </li>
         
           <li>
             <a href="/2019/10/01/我的第一篇文章/">我的第一篇文章</a>
